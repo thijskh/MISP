@@ -770,7 +770,7 @@ coreCAKE <span class="o">()</span> <span class="o">{</span>
          Plugin.Enrichment_recordedfuture_enabled
          Plugin.ElasticSearch_logging_enable
          Plugin.S3_enable<span class="o">)</span>
-  <span class="k">for</span> PLUG in <span class="s2">&quot;</span><span class="si">${</span><span class="nv">PLUGS</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span> <span class="k">do</span>
+  <span class="k">for</span> PLUG <span class="k">in</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">PLUGS</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span> <span class="k">do</span>
     <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">RUN_PHP</span><span class="si">}</span> -- <span class="si">${</span><span class="nv">CAKE</span><span class="si">}</span> Admin setSetting <span class="si">${</span><span class="nv">PLUG</span><span class="si">}</span> <span class="nb">false</span>
   <span class="k">done</span>
 

@@ -314,6 +314,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#0-misp-ubuntu-2004-server-install-status" class="md-nav__link">
+    0/ MISP Ubuntu 20.04-server install - status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#1-minimal-ubuntu-install" class="md-nav__link">
     1/ Minimal Ubuntu install
   </a>
@@ -958,6 +965,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#0-misp-ubuntu-2004-server-install-status" class="md-nav__link">
+    0/ MISP Ubuntu 20.04-server install - status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#1-minimal-ubuntu-install" class="md-nav__link">
     1/ Minimal Ubuntu install
   </a>
@@ -1245,10 +1259,11 @@ bash /tmp/INSTALL.sh
 wget -O /tmp/INSTALL.sh https://raw.githubusercontent.com/MISP/MISP/2.4/INSTALL/INSTALL.sh
 bash /tmp/INSTALL.sh -c
 </code></pre></div>
-
 </div>
 <h3 id="-1-installer-and-manual-install-instructions_1">-1/ Installer and Manual install instructions<a class="headerlink" href="#-1-installer-and-manual-install-instructions_1" title="Permanent link">&para;</a></h3>
 <p>Make sure you are reading the parsed version of this Document. When in doubt <a href="https://misp.github.io/MISP/INSTALL.ubuntu2004/">click here</a>.</p>
+<h3 id="0-misp-ubuntu-2004-server-install-status">0/ MISP Ubuntu 20.04-server install - status<a class="headerlink" href="#0-misp-ubuntu-2004-server-install-status" title="Permanent link">&para;</a></h3>
+<hr />
 <div class="admonition notice">
 <p class="admonition-title">Notice</p>
 <p>Installer tested working by <a href="https://twitter.com/SteveClement">@SteveClement</a> on 20210401 (works with <strong>Ubuntu 19.04/20.04/21.04</strong> too)</p>
@@ -1287,7 +1302,6 @@ aptUpgrade <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 0_apt-upgrade.sh&gt;</span>
 </code></pre></div>
-
 <h4 id="install-etckeeper-and-sudo-optional">install etckeeper and sudo (optional)<a class="headerlink" href="#install-etckeeper-and-sudo-optional" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;snippet-begin 0_sudoKeeper.sh&gt;</span>
 <span class="c1"># check if sudo is installed</span>
@@ -1311,7 +1325,6 @@ checkSudoKeeper <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 0_sudoKeeper.sh&gt;</span>
 </code></pre></div>
-
 <h5 id="add-the-misp-user-to-staff-and-www-data-mandatory">add the misp user to staff and www-data (mandatory)<a class="headerlink" href="#add-the-misp-user-to-staff-and-www-data-mandatory" title="Permanent link">&para;</a></h5>
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;snippet-begin add-user.sh&gt;</span>
 <span class="c1">## FIXME: This function is a duplicate included in: # &lt;snippet-begin 0_support-functions.sh&gt;</span>
@@ -1340,7 +1353,6 @@ checkUsrLocalSrc <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end add-user.sh&gt;</span>
 </code></pre></div>
-
 <h4 id="network-interface-name-salvage-optional">Network Interface Name salvage (optional)<a class="headerlink" href="#network-interface-name-salvage-optional" title="Permanent link">&para;</a></h4>
 <p>This will bring back 'ethX' e.g: eth0</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;snippet-end interfaces.sh&gt;</span>
@@ -1368,7 +1380,6 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo update-grub  &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
 <span class="c1"># &lt;snippet-end interfaces.sh&gt;</span>
 </code></pre></div>
-
 <div class="admonition notice">
 <p class="admonition-title">Notice</p>
 <p>On recent Ubuntu install Netplan is default and you need to change the Network name.
@@ -1383,7 +1394,6 @@ OR on Ubuntu 19.04 (yay for changing this every 5 commits... #n00bs)
 sudo apt-get install postfix dialog -qy
 <span class="c1"># &lt;snippet-end postfix.sh&gt;</span>
 </code></pre></div>
-
 <div class="admonition notice">
 <p class="admonition-title">Notice</p>
 <p>Postfix Configuration: Satellite system<br />
@@ -1397,7 +1407,6 @@ sudo postfix reload
 <div class="highlight"><pre><span></span><code><span class="nb">eval</span> <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/MISP/MISP/2.4/docs/generic/globalVariables.md <span class="p">|</span> awk <span class="s1">&#39;/^# &lt;snippet-begin/,0&#39;</span> <span class="p">|</span> grep -v <span class="se">\`\`\`</span><span class="k">)</span><span class="s2">&quot;</span>
 MISPvars
 </code></pre></div>
-
 <div class="admonition notice">
 <p class="admonition-title">Notice</p>
 <p>Do NOT leave your session after this mid-install as some initial passwords have been generated and thus would be lost.
@@ -1511,7 +1520,6 @@ MISPvars <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 0_global-vars.sh&gt;</span>
 </code></pre></div>
-
 <h3 id="2-install-lamp-dependencies">2/ Install LAMP &amp; dependencies<a class="headerlink" href="#2-install-lamp-dependencies" title="Permanent link">&para;</a></h3>
 <hr />
 <p>Once the system is installed you can perform the following steps.
@@ -1548,7 +1556,7 @@ installDepsPhp74 <span class="o">()</span> <span class="o">{</span>
   php7.4-intl php7.4-bcmath <span class="se">\</span>
   php7.4-gd
 
-  <span class="k">for</span> key in upload_max_filesize post_max_size max_execution_time max_input_time memory_limit
+  <span class="k">for</span> key <span class="k">in</span> upload_max_filesize post_max_size max_execution_time max_input_time memory_limit
   <span class="k">do</span>
       sudo sed -i <span class="s2">&quot;s/^\(</span><span class="nv">$key</span><span class="s2">\).*/\1 = </span><span class="k">$(</span><span class="nb">eval</span> <span class="nb">echo</span> <span class="se">\$</span><span class="o">{</span><span class="nv">$key</span><span class="o">}</span><span class="k">)</span><span class="s2">/&quot;</span> <span class="nv">$PHP_INI</span>
   <span class="k">done</span>
@@ -1581,7 +1589,7 @@ installCore <span class="o">()</span> <span class="o">{</span>
     sudo mkdir /var/www/.cache/
     sudo chown <span class="si">${</span><span class="nv">WWW_USER</span><span class="si">}</span>:<span class="si">${</span><span class="nv">WWW_USER</span><span class="si">}</span> /var/www/.cache
 
-    <span class="k">for</span> dependency in CybOXProject/python-cybox STIXProject/python-stix MAECProject/python-maec CybOXProject/mixbox<span class="p">;</span> <span class="k">do</span>
+    <span class="k">for</span> dependency <span class="k">in</span> CybOXProject/python-cybox STIXProject/python-stix MAECProject/python-maec CybOXProject/mixbox<span class="p">;</span> <span class="k">do</span>
       false<span class="p">;</span> <span class="k">while</span> <span class="o">[[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">do</span> checkAptLock<span class="p">;</span> <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> git clone https://github.com/<span class="si">${</span><span class="nv">dependency</span><span class="si">}</span>.git <span class="si">${</span><span class="nv">PATH_TO_MISP_SCRIPTS</span><span class="si">}</span>/<span class="si">${</span><span class="nv">dependency</span><span class="p">##*/</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
       <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> git -C <span class="si">${</span><span class="nv">PATH_TO_MISP_SCRIPTS</span><span class="si">}</span>/<span class="si">${</span><span class="nv">dependency</span><span class="p">##*/</span><span class="si">}</span> config core.filemode <span class="nb">false</span>
       <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/venv/bin/pip install <span class="si">${</span><span class="nv">PATH_TO_MISP_SCRIPTS</span><span class="si">}</span>/<span class="si">${</span><span class="nv">dependency</span><span class="p">##*/</span><span class="si">}</span>
@@ -1631,7 +1639,7 @@ installCore <span class="o">()</span> <span class="o">{</span>
     false<span class="p">;</span> <span class="k">while</span> <span class="o">[[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">do</span> <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> git -C <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span> submodule update --progress --init --recursive<span class="p">;</span> <span class="k">done</span>
 
     <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/venv/bin/pip install -U setuptools pip lief zmq redis python-magic plyara
-    <span class="k">for</span> dependency in CybOXProject/python-cybox STIXProject/python-stix MAECProject/python-maec CybOXProject/mixbox<span class="p">;</span> <span class="k">do</span>
+    <span class="k">for</span> dependency <span class="k">in</span> CybOXProject/python-cybox STIXProject/python-stix MAECProject/python-maec CybOXProject/mixbox<span class="p">;</span> <span class="k">do</span>
       false<span class="p">;</span> <span class="k">while</span> <span class="o">[[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">do</span> checkAptLock<span class="p">;</span> <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> git -C <span class="si">${</span><span class="nv">PATH_TO_MISP_SCRIPTS</span><span class="si">}</span>/<span class="si">${</span><span class="nv">dependency</span><span class="p">##*/</span><span class="si">}</span> pull<span class="p">;</span> <span class="k">done</span>
       <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/venv/bin/pip install -U <span class="si">${</span><span class="nv">PATH_TO_MISP_SCRIPTS</span><span class="si">}</span>/<span class="si">${</span><span class="nv">dependency</span><span class="p">##*/</span><span class="si">}</span>
     <span class="k">done</span>
@@ -1643,7 +1651,6 @@ installCore <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 1_mispCoreInstall.sh&gt;</span>
 </code></pre></div>
-
 <h3 id="4-cakephp">4/ CakePHP<a class="headerlink" href="#4-cakephp" title="Permanent link">&para;</a></h3>
 <hr />
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;snippet-begin 1_installCake.sh&gt;</span>
@@ -1666,7 +1673,6 @@ installCake <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 1_installCake.sh&gt;</span>
 </code></pre></div>
-
 <h3 id="5-set-the-permissions">5/ Set the permissions<a class="headerlink" href="#5-set-the-permissions" title="Permanent link">&para;</a></h3>
 <hr />
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;snippet-begin 2_permissions.sh&gt;</span>
@@ -1681,7 +1687,6 @@ permissions <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 2_permissions.sh&gt;</span>
 </code></pre></div>
-
 <h3 id="6-create-a-database-and-user">6/ Create a database and user<a class="headerlink" href="#6-create-a-database-and-user" title="Permanent link">&para;</a></h3>
 <hr />
 <h4 id="set-up-db-user-and-import-empty-misp-db">Set-up DB, User and import empty MISP DB<a class="headerlink" href="#set-up-db-user-and-import-empty-misp-db" title="Permanent link">&para;</a></h4>
@@ -1723,7 +1728,6 @@ prepareDB <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 1_prepareDB.sh&gt;</span>
 </code></pre></div>
-
 <h3 id="7-apache-configuration">7/ Apache configuration<a class="headerlink" href="#7-apache-configuration" title="Permanent link">&para;</a></h3>
 <hr />
 <p>Now configure your Apache webserver with the DocumentRoot ${PATH_TO_MISP}/app/webroot/</p>
@@ -1770,7 +1774,6 @@ apacheConfig <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 1_apacheConfig.sh&gt;</span>
 </code></pre></div>
-
 <div class="admonition notice">
 <p class="admonition-title">Notice</p>
 <p>Please find a sample conf file for an SSL enabled conf file in-line below (alternatively use one of the samples provided in /var/www/MISP/INSTALL).<br />
@@ -1813,7 +1816,6 @@ Otherwise, copy the SSLCertificateFile, SSLCertificateKeyFile, and SSLCertificat
 &lt;/VirtualHost&gt;
 ============================================= End sample working SSL config for MISP
 </code></pre></div>
-
 <h3 id="8-log-rotation">8/ Log rotation<a class="headerlink" href="#8-log-rotation" title="Permanent link">&para;</a></h3>
 <hr />
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;snippet-begin 2_logRotation.sh&gt;</span>
@@ -1825,7 +1827,6 @@ logRotation <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 2_logRotation.sh&gt;</span>
 </code></pre></div>
-
 <h3 id="9-misp-configuration">9/ MISP configuration<a class="headerlink" href="#9-misp-configuration" title="Permanent link">&para;</a></h3>
 <hr />
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;snippet-begin 2_configMISP.sh&gt;</span>
@@ -1866,7 +1867,6 @@ configMISP <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 2_configMISP.sh&gt;</span>
 </code></pre></div>
-
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;snippet-begin 2_gnupg.sh&gt;</span>
 <span class="c1"># Generate GnuPG key</span>
 setupGnuPG <span class="o">()</span> <span class="o">{</span>
@@ -1894,7 +1894,6 @@ setupGnuPG <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 2_gnupg.sh&gt;</span>
 </code></pre></div>
-
 <div class="admonition notice">
 <p class="admonition-title">Notice</p>
 <p>If entropy is not high enough, you can install havegd and then start the service
@@ -1940,11 +1939,9 @@ backgroundWorkers <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 2_backgroundWorkers.sh&gt;</span>
 </code></pre></div>
-
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;Admin (root) DB Password: </span><span class="nv">$DBPASSWORD_ADMIN</span><span class="s2">&quot;</span>
 <span class="nb">echo</span> <span class="s2">&quot;User  (misp) DB Password: </span><span class="nv">$DBPASSWORD_MISP</span><span class="s2">&quot;</span>
 </code></pre></div>
-
 <h4 id="initialize-misp-configuration-and-set-some-defaults">Initialize MISP configuration and set some defaults<a class="headerlink" href="#initialize-misp-configuration-and-set-some-defaults" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;snippet-begin 2_core-cake.sh&gt;</span>
 <span class="c1"># Core cake commands to tweak MISP and aleviate some of the configuration pains</span>
@@ -2061,7 +2058,7 @@ coreCAKE <span class="o">()</span> <span class="o">{</span>
          Plugin.Enrichment_recordedfuture_enabled
          Plugin.ElasticSearch_logging_enable
          Plugin.S3_enable<span class="o">)</span>
-  <span class="k">for</span> PLUG in <span class="s2">&quot;</span><span class="si">${</span><span class="nv">PLUGS</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span> <span class="k">do</span>
+  <span class="k">for</span> PLUG <span class="k">in</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">PLUGS</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span> <span class="k">do</span>
     <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">RUN_PHP</span><span class="si">}</span> -- <span class="si">${</span><span class="nv">CAKE</span><span class="si">}</span> Admin setSetting <span class="si">${</span><span class="nv">PLUG</span><span class="si">}</span> <span class="nb">false</span>
   <span class="k">done</span>
 
@@ -2223,7 +2220,6 @@ updateGOWNT <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 2_core-cake.sh&gt;</span>
 </code></pre></div>
-
 <h4 id="install-misp-modules-optional">Install misp-modules (optional)<a class="headerlink" href="#install-misp-modules-optional" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;snippet-begin 3_misp-modules.sh&gt;</span>
 <span class="c1"># Main MISP Modules install function</span>
@@ -2277,7 +2273,6 @@ mispmodules <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 3_misp-modules.sh&gt;</span>
 </code></pre></div>
-
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;snippet-begin 3_misp-modules-cake.sh&gt;</span>
 modulesCAKE <span class="o">()</span> <span class="o">{</span>
   <span class="c1"># Enable Enrichment, set better timeouts</span>
@@ -2344,7 +2339,6 @@ modulesCAKE <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 3_misp-modules-cake.sh&gt;</span>
 </code></pre></div>
-
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>If you have installed the recommended Python 3 virtualenv to the recommended place of <strong>${PATH_TO_MISP}/venv</strong> set the following MISP configurable
@@ -2404,7 +2398,6 @@ chown -R www-data:www-data <span class="si">${</span><span class="nv">PATH_TO_MI
 <h4 id="misp-has-a-new-pubsub-feature-using-zeromq-to-enable-it-simply-run-the-following-command">MISP has a new pub/sub feature, using ZeroMQ. To enable it, simply run the following command<a class="headerlink" href="#misp-has-a-new-pubsub-feature-using-zeromq-to-enable-it-simply-run-the-following-command" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/venv/bin/pip install pyzmq
 </code></pre></div>
-
 <h4 id="misp-has-a-feature-for-publishing-events-to-kafka-to-enable-it-simply-run-the-following-commands">MISP has a feature for publishing events to Kafka. To enable it, simply run the following commands<a class="headerlink" href="#misp-has-a-feature-for-publishing-events-to-kafka-to-enable-it-simply-run-the-following-commands" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;snippet-begin 4_kafka.sh&gt;</span>
 installKafka <span class="o">()</span> <span class="o">{</span>
@@ -2417,7 +2410,6 @@ installKafka <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 4_kafka.sh&gt;</span>
 </code></pre></div>
-
 <h4 id="misp-dashboard">MISP Dashboard<a class="headerlink" href="#misp-dashboard" title="Permanent link">&para;</a></h4>
 <hr />
 <div class="admonition warning">
@@ -2519,7 +2511,6 @@ dashboardCAKE <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 4_misp-dashboard-cake.sh&gt;</span>
 </code></pre></div>
-
 <h4 id="install-viper-framework-with-a-virtualenv">Install viper framework (with a virtualenv)<a class="headerlink" href="#install-viper-framework-with-a-virtualenv" title="Permanent link">&para;</a></h4>
 <hr />
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;snippet-begin 6_viper.sh&gt;</span>
@@ -2590,7 +2581,6 @@ viper <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 6_viper.sh&gt;</span>
 </code></pre></div>
-
 <h4 id="experimental-ssdeep-correlations">Experimental ssdeep correlations<a class="headerlink" href="#experimental-ssdeep-correlations" title="Permanent link">&para;</a></h4>
 <h5 id="installing-ssdeep">installing ssdeep<a class="headerlink" href="#installing-ssdeep" title="Permanent link">&para;</a></h5>
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;snippet-begin 6_ssdeep.sh&gt;</span>
@@ -2615,7 +2605,6 @@ ssdeep <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 6_ssdeep.sh&gt;</span>
 </code></pre></div>
-
 <h4 id="install-mail-to-misp">Install mail to misp<a class="headerlink" href="#install-mail-to-misp" title="Permanent link">&para;</a></h4>
 <hr />
 <div class="highlight"><pre><span></span><code><span class="c1"># &lt;snippet-begin 5_mail_to_misp.sh&gt;</span>
@@ -2650,7 +2639,6 @@ mail2misp <span class="o">()</span> <span class="o">{</span>
 <span class="o">}</span>
 <span class="c1"># &lt;snippet-end 5_mail_to_misp.sh&gt;</span>
 </code></pre></div>
-
 <h1 id="hardening-a-base-system">Hardening a base system<a class="headerlink" href="#hardening-a-base-system" title="Permanent link">&para;</a></h1>
 <h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h2>
 <p>MISP is a web-based <strong>information sharing platform</strong>, by design it is kept rather simple and hardening can be done by following the common best practices.</p>
@@ -2695,7 +2683,6 @@ index f9f69d4..2e8fd78 100644
  #
  # Allow TRACE method
 </code></pre></div>
-
 <h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
 <p><a href="https://www.ncsc.nl/english/current-topics/factsheets/it-security-guidelines-for-transport-layer-security-tls.html">IT Security Guidelines for TLS by NCSC.nl</a></p>
 <p><a href="https://weakdh.org/sysadmin.html">Weak Diffie-Hellman and the Logjam Attack</a></p>
@@ -2712,7 +2699,7 @@ Please ignore.</p>
 <span class="c1"># Leave empty for NO debug messages, if run with set -x or bash -x it will enable DEBUG by default</span>
 <span class="nv">DEBUG</span><span class="o">=</span>
 
-<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$-</span><span class="s2">&quot;</span> in
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$-</span><span class="s2">&quot;</span> <span class="k">in</span>
   *x*<span class="o">)</span>  <span class="nv">NO_PROGRESS</span><span class="o">=</span><span class="m">1</span><span class="p">;</span> <span class="nv">DEBUG</span><span class="o">=</span><span class="m">1</span> <span class="p">;;</span>
   *<span class="o">)</span>    <span class="nv">NO_PROGRESS</span><span class="o">=</span><span class="m">0</span> <span class="p">;;</span>
 <span class="k">esac</span>
@@ -2783,8 +2770,8 @@ checkOpt <span class="o">()</span> <span class="o">{</span>
 
 setOpt <span class="o">()</span> <span class="o">{</span>
   <span class="nv">options</span><span class="o">=()</span>
-  <span class="k">for</span> o in <span class="nv">$@</span><span class="p">;</span> <span class="k">do</span> 
-    <span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$o</span><span class="s2">&quot;</span> in
+  <span class="k">for</span> o <span class="k">in</span> <span class="nv">$@</span><span class="p">;</span> <span class="k">do</span> 
+    <span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$o</span><span class="s2">&quot;</span> <span class="k">in</span>
       <span class="o">(</span><span class="s2">&quot;-c&quot;</span><span class="o">)</span> <span class="nb">echo</span> <span class="s2">&quot;core&quot;</span><span class="p">;</span> <span class="nv">CORE</span><span class="o">=</span><span class="m">1</span> <span class="p">;;</span>
       <span class="o">(</span><span class="s2">&quot;-V&quot;</span><span class="o">)</span> <span class="nb">echo</span> <span class="s2">&quot;viper&quot;</span><span class="p">;</span> <span class="nv">VIPER</span><span class="o">=</span><span class="m">1</span> <span class="p">;;</span>
       <span class="o">(</span><span class="s2">&quot;-M&quot;</span><span class="o">)</span> <span class="nb">echo</span> <span class="s2">&quot;modules&quot;</span><span class="p">;</span> <span class="nv">MODULES</span><span class="o">=</span><span class="m">1</span> <span class="p">;;</span>
@@ -2837,7 +2824,7 @@ checkFlavour <span class="o">()</span> <span class="o">{</span>
     <span class="nv">FLAVOUR</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>. /etc/os-release <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$ID</span><span class="s2">&quot;</span><span class="p">|</span> tr <span class="s1">&#39;[:upper:]&#39;</span> <span class="s1">&#39;[:lower:]&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
   <span class="k">fi</span>
 
-  <span class="k">case</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">FLAVOUR</span><span class="si">}</span><span class="s2">&quot;</span> in
+  <span class="k">case</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">FLAVOUR</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">in</span>
     ubuntu<span class="o">)</span>
       <span class="k">if</span> command_exists lsb_release<span class="p">;</span> <span class="k">then</span>
         <span class="nv">dist_version</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>lsb_release --codename <span class="p">|</span> cut -f2<span class="k">)</span><span class="s2">&quot;</span>
@@ -2848,7 +2835,7 @@ checkFlavour <span class="o">()</span> <span class="o">{</span>
     <span class="p">;;</span>
     debian<span class="p">|</span>raspbian<span class="o">)</span>
       <span class="nv">dist_version</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>sed <span class="s1">&#39;s/\/.*//&#39;</span> /etc/debian_version <span class="p">|</span> sed <span class="s1">&#39;s/\..*//&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
-      <span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$dist_version</span><span class="s2">&quot;</span> in
+      <span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$dist_version</span><span class="s2">&quot;</span> <span class="k">in</span>
         <span class="m">10</span><span class="o">)</span>
           <span class="nv">dist_version</span><span class="o">=</span><span class="s2">&quot;buster&quot;</span>
         <span class="p">;;</span>
@@ -2922,7 +2909,7 @@ check_forked <span class="o">()</span> <span class="o">{</span>
         <span class="c1"># We&#39;re Debian and don&#39;t even know it!</span>
         <span class="nv">FLAVOUR</span><span class="o">=</span>debian
         <span class="nv">dist_version</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>sed <span class="s1">&#39;s/\/.*//&#39;</span> /etc/debian_version <span class="p">|</span> sed <span class="s1">&#39;s/\..*//&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
-        <span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$dist_version</span><span class="s2">&quot;</span> in
+        <span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$dist_version</span><span class="s2">&quot;</span> <span class="k">in</span>
           <span class="m">10</span><span class="o">)</span>
             <span class="nv">dist_version</span><span class="o">=</span><span class="s2">&quot;buster&quot;</span>
           <span class="p">;;</span>
@@ -2958,7 +2945,7 @@ checkInstaller <span class="o">()</span> <span class="o">{</span>
     <span class="k">fi</span>
     <span class="c1"># SHAsums to be computed, not the -- notatiation is for ease of use with rhash</span>
     <span class="nv">SHA_SUMS</span><span class="o">=</span><span class="s2">&quot;--sha1 --sha256 --sha384 --sha512&quot;</span>
-    <span class="k">for</span> sum in <span class="k">$(</span><span class="nb">echo</span> <span class="si">${</span><span class="nv">SHA_SUMS</span><span class="si">}</span> <span class="p">|</span>sed <span class="s1">&#39;s/--sha//g&#39;</span><span class="k">)</span><span class="p">;</span> <span class="k">do</span>
+    <span class="k">for</span> sum <span class="k">in</span> <span class="k">$(</span><span class="nb">echo</span> <span class="si">${</span><span class="nv">SHA_SUMS</span><span class="si">}</span> <span class="p">|</span>sed <span class="s1">&#39;s/--sha//g&#39;</span><span class="k">)</span><span class="p">;</span> <span class="k">do</span>
       /usr/bin/wget --no-cache -q -O /tmp/INSTALL.sh.sha<span class="si">${</span><span class="nv">sum</span><span class="si">}</span> https://raw.githubusercontent.com/MISP/MISP/2.4/INSTALL/INSTALL.sh.sha<span class="si">${</span><span class="nv">sum</span><span class="si">}</span>
       <span class="nv">INSTsum</span><span class="o">=</span><span class="k">$(</span>shasum -a <span class="si">${</span><span class="nv">sum</span><span class="si">}</span> <span class="si">${</span><span class="nv">0</span><span class="si">}</span> <span class="p">|</span> cut -f1 -d<span class="se">\ </span><span class="k">)</span>
       <span class="nv">chsum</span><span class="o">=</span><span class="k">$(</span>cat /tmp/INSTALL.sh.sha<span class="si">${</span><span class="nv">sum</span><span class="si">}</span> <span class="p">|</span> cut -f1 -d<span class="se">\ </span><span class="k">)</span>
@@ -2992,7 +2979,7 @@ space <span class="o">()</span> <span class="o">{</span>
   <span class="k">fi</span>
   <span class="c1"># Check terminal width</span>
   <span class="nv">num</span><span class="o">=</span><span class="sb">`</span>tput cols<span class="sb">`</span>
-  <span class="k">for</span> i in <span class="sb">`</span>seq <span class="m">1</span> <span class="nv">$num</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
+  <span class="k">for</span> i <span class="k">in</span> <span class="sb">`</span>seq <span class="m">1</span> <span class="nv">$num</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
     <span class="nb">echo</span> -n <span class="s2">&quot;-&quot;</span>
   <span class="k">done</span>
   <span class="nb">echo</span> <span class="s2">&quot;&quot;</span>
@@ -3007,7 +2994,7 @@ spin<span class="o">()</span>
   <span class="nv">spinner</span><span class="o">=</span><span class="s2">&quot;/|\\-/|\\-&quot;</span>
   <span class="k">while</span> :
   <span class="k">do</span>
-    <span class="k">for</span> i in <span class="sb">`</span>seq <span class="m">0</span> <span class="m">7</span><span class="sb">`</span>
+    <span class="k">for</span> i <span class="k">in</span> <span class="sb">`</span>seq <span class="m">0</span> <span class="m">7</span><span class="sb">`</span>
     <span class="k">do</span>
       <span class="nb">echo</span> -n <span class="s2">&quot;</span><span class="si">${</span><span class="nv">spinner</span><span class="p">:</span><span class="nv">$i</span><span class="p">:</span><span class="nv">1</span><span class="si">}</span><span class="s2">&quot;</span>
       <span class="nb">echo</span> -en <span class="s2">&quot;\010&quot;</span>
@@ -3031,7 +3018,7 @@ progress <span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span>
   <span class="k">fi</span>
   <span class="c1"># Display progress</span>
-  <span class="k">for</span> p in <span class="k">$(</span>seq <span class="m">1</span> <span class="nv">$progress</span><span class="k">)</span><span class="p">;</span> <span class="k">do</span>
+  <span class="k">for</span> p <span class="k">in</span> <span class="k">$(</span>seq <span class="m">1</span> <span class="nv">$progress</span><span class="k">)</span><span class="p">;</span> <span class="k">do</span>
     <span class="nv">bar</span><span class="o">+=</span><span class="s2">&quot;#&quot;</span>
     <span class="nb">echo</span> -ne <span class="s2">&quot;</span><span class="nv">$bar</span><span class="s2">  (</span><span class="nv">$p</span><span class="s2">%)\r&quot;</span>
   <span class="k">done</span>
@@ -3075,7 +3062,7 @@ ask_o <span class="o">()</span> <span class="o">{</span>
   <span class="o">[</span> -z <span class="s2">&quot;</span><span class="si">${</span><span class="nv">3</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nv">OPT2</span><span class="o">=</span><span class="s2">&quot;n&quot;</span> <span class="o">||</span> <span class="nv">OPT2</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">3</span><span class="si">}</span><span class="s2">&quot;</span>
 
   <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span>
-    <span class="k">case</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ANSWER</span><span class="si">}</span><span class="s2">&quot;</span> in <span class="s2">&quot;</span><span class="si">${</span><span class="nv">OPT1</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">OPT2</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">)</span> <span class="nb">break</span> <span class="p">;;</span> <span class="k">esac</span>
+    <span class="k">case</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ANSWER</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">in</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">OPT1</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">OPT2</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">)</span> <span class="nb">break</span> <span class="p">;;</span> <span class="k">esac</span>
     <span class="nb">echo</span> -e -n <span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="si">}</span><span class="s2"> (</span><span class="si">${</span><span class="nv">OPT1</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">OPT2</span><span class="si">}</span><span class="s2">) &quot;</span>
     <span class="nb">read</span> ANSWER
     <span class="nv">ANSWER</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ANSWER</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span>  tr <span class="s1">&#39;[:upper:]&#39;</span> <span class="s1">&#39;[:lower:]&#39;</span><span class="k">)</span>
@@ -3183,7 +3170,7 @@ upgrade <span class="o">()</span> <span class="o">{</span>
   <span class="nv">MISP_BASEURL</span><span class="o">=</span><span class="s2">&quot;https://127.0.0.1&quot;</span>
   <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> sh -c <span class="s2">&quot;cd </span><span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span><span class="s2">/app ; php composer.phar update ; php composer.phar self-update&quot;</span>
 
-  <span class="k">for</span> URN in <span class="k">$(</span><span class="nb">echo</span> <span class="s2">&quot;galaxies warninglists noticelists objectTemplates taxonomies&quot;</span><span class="k">)</span><span class="p">;</span> <span class="k">do</span>
+  <span class="k">for</span> URN <span class="k">in</span> <span class="k">$(</span><span class="nb">echo</span> <span class="s2">&quot;galaxies warninglists noticelists objectTemplates taxonomies&quot;</span><span class="k">)</span><span class="p">;</span> <span class="k">do</span>
     curl --header <span class="s2">&quot;</span><span class="nv">$Autho</span><span class="s2"> </span><span class="nv">$AUTH_KEY</span><span class="s2">&quot;</span> --header <span class="s2">&quot;</span><span class="nv">$Acc</span><span class="s2"> </span><span class="nv">$headerJSON</span><span class="s2">&quot;</span> --header <span class="s2">&quot;</span><span class="nv">$CT</span><span class="s2"> </span><span class="nv">$headerJSON</span><span class="s2">&quot;</span> -k -X POST <span class="nv">$MISP_BASEURL</span>/<span class="nv">$URN</span>/update
   <span class="k">done</span>
 
@@ -3378,7 +3365,7 @@ installDepsPhp70 <span class="o">()</span> <span class="o">{</span>
   php-redis php-gnupg <span class="se">\</span>
   php-gd
 
-  <span class="k">for</span> key in upload_max_filesize post_max_size max_execution_time max_input_time memory_limit
+  <span class="k">for</span> key <span class="k">in</span> upload_max_filesize post_max_size max_execution_time max_input_time memory_limit
   <span class="k">do</span>
       sudo sed -i <span class="s2">&quot;s/^\(</span><span class="nv">$key</span><span class="s2">\).*/\1 = </span><span class="k">$(</span><span class="nb">eval</span> <span class="nb">echo</span> <span class="se">\$</span><span class="o">{</span><span class="nv">$key</span><span class="o">}</span><span class="k">)</span><span class="s2">/&quot;</span> <span class="nv">$PHP_INI</span>
   <span class="k">done</span>
@@ -3613,7 +3600,7 @@ runTests <span class="o">()</span> <span class="o">{</span>
 <span class="s2">key = \&quot;</span><span class="si">${</span><span class="nv">AUTH_KEY</span><span class="si">}</span><span class="s2">\&quot;&quot;</span> <span class="p">|</span>sudo tee <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/PyMISP/tests/keys.py
   sudo chown -R <span class="nv">$WWW_USER</span>:<span class="nv">$WWW_USER</span> <span class="nv">$PATH_TO_MISP</span>/PyMISP/
 
-  <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> sh -c <span class="s2">&quot;cd </span><span class="nv">$PATH_TO_MISP</span><span class="s2">/PyMISP &amp;&amp; git submodule foreach git pull origin master&quot;</span>
+  <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> sh -c <span class="s2">&quot;cd </span><span class="nv">$PATH_TO_MISP</span><span class="s2">/PyMISP &amp;&amp; git submodule foreach git pull origin main&quot;</span>
   <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/venv/bin/pip install -e <span class="nv">$PATH_TO_MISP</span>/PyMISP/.<span class="o">[</span>fileobjects,neo,openioc,virustotal,pdfexport<span class="o">]</span>
   <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> sh -c <span class="s2">&quot;cd </span><span class="nv">$PATH_TO_MISP</span><span class="s2">/PyMISP &amp;&amp; </span><span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span><span class="s2">/venv/bin/python tests/testlive_comprehensive.py&quot;</span>
 <span class="o">}</span>
@@ -3705,7 +3692,7 @@ installDepsPhp72 <span class="o">()</span> <span class="o">{</span>
   php-intl php-bcmath <span class="se">\</span>
   php-gd
 
-  <span class="k">for</span> key in upload_max_filesize post_max_size max_execution_time max_input_time memory_limit
+  <span class="k">for</span> key <span class="k">in</span> upload_max_filesize post_max_size max_execution_time max_input_time memory_limit
   <span class="k">do</span>
       sudo sed -i <span class="s2">&quot;s/^\(</span><span class="nv">$key</span><span class="s2">\).*/\1 = </span><span class="k">$(</span><span class="nb">eval</span> <span class="nb">echo</span> <span class="se">\$</span><span class="o">{</span><span class="nv">$key</span><span class="o">}</span><span class="k">)</span><span class="s2">/&quot;</span> <span class="nv">$PHP_INI</span>
   <span class="k">done</span>
