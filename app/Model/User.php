@@ -1030,7 +1030,7 @@ class User extends AppModel
         $this->validator()->remove('password'); // password is too simple, remove validation
         $this->save($admin);
         if (!empty(Configure::read("Security.advanced_authkeys"))) {
-            $this->loadModel('AuthKey');
+            $this->AuthKey = ClassRegistry::init('AuthKey');
             $newKey = [
                 'authkey' => $authKey,
                 'user_id' => 1,
