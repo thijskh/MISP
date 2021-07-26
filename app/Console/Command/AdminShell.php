@@ -351,14 +351,14 @@ class AdminShell extends AppShell
             $setting = $this->Server->getSettingData($setting_name);
             if (empty($setting)) {
                 $message =  'Invalid setting "' . $setting_name . '". Please make sure that the setting that you are attempting to change exists and if a module parameter, the modules are running.' . PHP_EOL;
-                $this->error(__('Setting change rejected.', $message));
+                $this->error(__('Setting change rejected.'), $message);
             }
             $result = $this->Server->serverSettingsEditValue($cli_user, $setting, $value, $this->params['force']);
             if ($result === true) {
                 echo 'Setting "' . $setting_name . '" changed to ' . $value . PHP_EOL;
             } else {
                 $message = __("The setting change was rejected. MISP considers the requested setting value as invalid and would lead to the following error:\n\n\"%s\"\n\nIf you still want to force this change, please supply the --force argument.\n", $result);
-                $this->error(__('Setting change rejected.', $message));
+                $this->error(__('Setting change rejected.'), $message);
             }
         }
         echo PHP_EOL;
