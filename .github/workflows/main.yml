@@ -6,7 +6,7 @@ name: misp
 # events but only for the 2.4 and develop branches
 on:
   push:
-    branches: [ 2.4, develop ]
+    branches: [ 2.4, develop, actions_fix_test ]
   pull_request:
     branches: [ 2.4, develop ]
 
