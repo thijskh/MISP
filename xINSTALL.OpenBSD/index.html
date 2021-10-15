@@ -42,7 +42,7 @@
     
     
       
-        <title>OpenBSD 6.8 - MISP Install Documentation</title>
+        <title>OpenBSD 7.0 - MISP Install Documentation</title>
       
     
     
@@ -109,7 +109,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                OpenBSD 6.8
+                OpenBSD 7.0
               
             </span>
           
@@ -382,11 +382,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        OpenBSD 6.8
+        OpenBSD 7.0
       </label>
     
-    <a href="./" title="OpenBSD 6.8" class="md-nav__link md-nav__link--active">
-      OpenBSD 6.8
+    <a href="./" title="OpenBSD 7.0" class="md-nav__link md-nav__link--active">
+      OpenBSD 7.0
     </a>
     
       
@@ -400,8 +400,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#for-openbsd-69-amd64" class="md-nav__link">
-    for OpenBSD 6.9-amd64
+  <a href="#for-openbsd-70-amd64" class="md-nav__link">
+    for OpenBSD 7.0-amd64
   </a>
   
     <nav class="md-nav">
@@ -1022,8 +1022,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#for-openbsd-69-amd64" class="md-nav__link">
-    for OpenBSD 6.9-amd64
+  <a href="#for-openbsd-70-amd64" class="md-nav__link">
+    for OpenBSD 7.0-amd64
   </a>
   
     <nav class="md-nav">
@@ -1397,7 +1397,7 @@
                 
                 
                 <h1 id="installation-instructions">INSTALLATION INSTRUCTIONS<a class="headerlink" href="#installation-instructions" title="Permanent link">&para;</a></h1>
-<h2 id="for-openbsd-69-amd64">for OpenBSD 6.9-amd64<a class="headerlink" href="#for-openbsd-69-amd64" title="Permanent link">&para;</a></h2>
+<h2 id="for-openbsd-70-amd64">for OpenBSD 7.0-amd64<a class="headerlink" href="#for-openbsd-70-amd64" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This is not fully working yet. Mostly it is a template for our ongoing documentation efforts <img alt="🕷️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/1f577.svg" title=":spider:" />
@@ -1410,12 +1410,6 @@ misp-modules are broken because of the python-opencv dependency.</p>
 <div class="admonition notice">
 <p class="admonition-title">Notice</p>
 <p>This guide attempts to offer native httpd or apache2/nginx.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>As of 20181018 the native httpd server is NOT useable with MISP on OpenBSD 6.3.
-Thus ONLY Apache 2.x available.
-NO <em>rewrite</em> available, just yet. It will be in <a href="https://marc.info/?l=openbsd-tech&amp;m=152761257806283&amp;w=2">the next release</a></p>
 </div>
 <div class="admonition notice">
 <p class="admonition-title">Notice</p>
@@ -1436,6 +1430,8 @@ Consider using a mux like <a href="https://superuser.com/questions/423310/byobu-
 <span class="c1"># $ MISPvars</span>
 MISPvars <span class="o">()</span> <span class="o">{</span>
   debug <span class="s2">&quot;Setting generic </span><span class="si">${</span><span class="nv">LBLUE</span><span class="si">}</span><span class="s2">MISP</span><span class="si">${</span><span class="nv">NC</span><span class="si">}</span><span class="s2"> variables shared by all flavours&quot;</span> <span class="m">2</span>&gt; /dev/null
+  <span class="c1"># Some distros have no openssl installed by default, catch that exception.</span>
+  <span class="k">$(</span>openssl <span class="nb">help</span> <span class="m">2</span>&gt; /dev/null<span class="k">)</span> <span class="o">||</span> <span class="o">(</span><span class="nb">echo</span> <span class="s2">&quot;No openssl, please install to continue&quot;</span><span class="p">;</span> <span class="nb">exit</span> -1<span class="o">)</span>
   <span class="c1"># Local non-root MISP user</span>
   <span class="nv">MISP_USER</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MISP_USER</span><span class="k">:-</span><span class="nv">misp</span><span class="si">}</span><span class="s2">&quot;</span>
   <span class="nv">MISP_PASSWORD</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MISP_PASSWORD</span><span class="k">:-$(</span>openssl rand -hex <span class="m">32</span><span class="k">)</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -1582,7 +1578,7 @@ doas tar -xzphf /tmp/xshare<span class="k">$(</span>uname -r<span class="p">|</s
 <div class="highlight"><pre><span></span><code>doas pkg_add -v mariadb-server 
 </code></pre></div>
 <h4 id="install-misc-dependencies">Install misc dependencies<a class="headerlink" href="#install-misc-dependencies" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>doas pkg_add -v curl git python--%3.8 redis libmagic autoconf--%2.71 automake--%1.16 libtool unzip--iconv rust
+<div class="highlight"><pre><span></span><code>doas pkg_add -v curl git sqlite3 python--%3.9 redis libmagic autoconf--%2.71 automake--%1.16 libtool unzip--iconv rust
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>doas pkg_add -v gnupg--%gnupg2
 doas ln -s /usr/local/bin/gpg2 /usr/local/bin/gpg
@@ -1697,8 +1693,8 @@ OPENSSL_EMAILADDRESS=&#39;info@localhost&#39;
 </code></pre></div>
 <h4 id="install-python-virtualenv">Install Python virtualenv<a class="headerlink" href="#install-python-virtualenv" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>doas pkg_add -v py3-virtualenv py3-pip
-doas ln -sf /usr/local/bin/pip3.8 /usr/local/bin/pip
-doas ln -s /usr/local/bin/python3.8 /usr/local/bin/python
+doas ln -sf /usr/local/bin/pip3.9 /usr/local/bin/pip
+doas ln -s /usr/local/bin/python3.9 /usr/local/bin/python
 doas mkdir /usr/local/virtualenvs
 doas /usr/local/bin/virtualenv /usr/local/virtualenvs/MISP
 </code></pre></div>
@@ -1828,7 +1824,7 @@ doas /usr/local/virtualenvs/MISP/bin/pip install git+https://github.com/kbandla/
 <span class="c1"># Install CakeResque along with its dependencies if you intend to use the built in background jobs:</span>
 <span class="nb">cd</span> /var/www/htdocs/MISP/app
 doas mkdir /var/www/.composer <span class="p">;</span> doas chown www:www /var/www/.composer
-<span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> env <span class="nv">HOME</span><span class="o">=</span>/var/www php composer.phar install
+<span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> env <span class="nv">HOME</span><span class="o">=</span>/var/www php composer.phar install --no-dev
 
 <span class="c1"># To use the scheduler worker for scheduled tasks, do the following:</span>
 <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> cp -f /var/www/htdocs/MISP/INSTALL/setup/config.php /var/www/htdocs/MISP/app/Plugin/CakeResque/Config/config.php

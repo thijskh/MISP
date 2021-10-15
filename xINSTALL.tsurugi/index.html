@@ -411,8 +411,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../xINSTALL.OpenBSD/" title="OpenBSD 6.8" class="md-nav__link">
-      OpenBSD 6.8
+    <a href="../xINSTALL.OpenBSD/" title="OpenBSD 7.0" class="md-nav__link">
+      OpenBSD 7.0
     </a>
   </li>
 
@@ -883,7 +883,7 @@ MISP_PASSWORD='Password1234'</p>
   ${SUDO_WWW} ${PATH_TO_MISP}/venv/bin/pip install .</p>
 <p>cd ${PATH_TO_MISP}/app
   mkdir /var/www/.composer ; chown www-data:www-data /var/www/.composer
-  ${SUDO_WWW} php composer.phar install</p>
+  ${SUDO_WWW} php composer.phar install --no-dev</p>
 <p>${SUDO_WWW} cp -fa ${PATH_TO_MISP}/INSTALL/setup/config.php ${PATH_TO_MISP}/app/Plugin/CakeResque/Config/config.php</p>
 <p>chown -R www-data:www-data ${PATH_TO_MISP}
   chmod -R 750 ${PATH_TO_MISP}
@@ -1524,13 +1524,13 @@ installMISPonTsurugi</p>
           </a>
         
         
-          <a href="../xINSTALL.OpenBSD/" title="OpenBSD 6.8" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../xINSTALL.OpenBSD/" title="OpenBSD 7.0" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                OpenBSD 6.8
+                OpenBSD 7.0
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

@@ -683,8 +683,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../xINSTALL.OpenBSD/" title="OpenBSD 6.8" class="md-nav__link">
-      OpenBSD 6.8
+    <a href="../xINSTALL.OpenBSD/" title="OpenBSD 7.0" class="md-nav__link">
+      OpenBSD 7.0
     </a>
   </li>
 
@@ -1417,6 +1417,8 @@ Consider using a mux like <a href="https://superuser.com/questions/423310/byobu-
 <span class="c1"># $ MISPvars</span>
 MISPvars <span class="o">()</span> <span class="o">{</span>
   debug <span class="s2">&quot;Setting generic </span><span class="si">${</span><span class="nv">LBLUE</span><span class="si">}</span><span class="s2">MISP</span><span class="si">${</span><span class="nv">NC</span><span class="si">}</span><span class="s2"> variables shared by all flavours&quot;</span> <span class="m">2</span>&gt; /dev/null
+  <span class="c1"># Some distros have no openssl installed by default, catch that exception.</span>
+  <span class="k">$(</span>openssl <span class="nb">help</span> <span class="m">2</span>&gt; /dev/null<span class="k">)</span> <span class="o">||</span> <span class="o">(</span><span class="nb">echo</span> <span class="s2">&quot;No openssl, please install to continue&quot;</span><span class="p">;</span> <span class="nb">exit</span> -1<span class="o">)</span>
   <span class="c1"># Local non-root MISP user</span>
   <span class="nv">MISP_USER</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MISP_USER</span><span class="k">:-</span><span class="nv">misp</span><span class="si">}</span><span class="s2">&quot;</span>
   <span class="nv">MISP_PASSWORD</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MISP_PASSWORD</span><span class="k">:-$(</span>openssl rand -hex <span class="m">32</span><span class="k">)</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -1589,15 +1591,6 @@ installCore <span class="o">()</span> <span class="o">{</span>
     sudo mkdir /var/www/.cache/
     sudo chown <span class="si">${</span><span class="nv">WWW_USER</span><span class="si">}</span>:<span class="si">${</span><span class="nv">WWW_USER</span><span class="si">}</span> /var/www/.cache
 
-    <span class="k">for</span> dependency <span class="k">in</span> CybOXProject/python-cybox STIXProject/python-stix MAECProject/python-maec CybOXProject/mixbox<span class="p">;</span> <span class="k">do</span>
-      false<span class="p">;</span> <span class="k">while</span> <span class="o">[[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">do</span> checkAptLock<span class="p">;</span> <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> git clone https://github.com/<span class="si">${</span><span class="nv">dependency</span><span class="si">}</span>.git <span class="si">${</span><span class="nv">PATH_TO_MISP_SCRIPTS</span><span class="si">}</span>/<span class="si">${</span><span class="nv">dependency</span><span class="p">##*/</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
-      <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> git -C <span class="si">${</span><span class="nv">PATH_TO_MISP_SCRIPTS</span><span class="si">}</span>/<span class="si">${</span><span class="nv">dependency</span><span class="p">##*/</span><span class="si">}</span> config core.filemode <span class="nb">false</span>
-      <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/venv/bin/pip install <span class="si">${</span><span class="nv">PATH_TO_MISP_SCRIPTS</span><span class="si">}</span>/<span class="si">${</span><span class="nv">dependency</span><span class="p">##*/</span><span class="si">}</span>
-    <span class="k">done</span>
-
-    debug <span class="s2">&quot;Install python-stix2&quot;</span>
-    <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/venv/bin/pip install <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/cti-python-stix2
-
     debug <span class="s2">&quot;Install PyMISP&quot;</span>
     <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/venv/bin/pip install <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/PyMISP
 
@@ -1638,13 +1631,6 @@ installCore <span class="o">()</span> <span class="o">{</span>
     <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> git pull -C <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>
     false<span class="p">;</span> <span class="k">while</span> <span class="o">[[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">do</span> <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> git -C <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span> submodule update --progress --init --recursive<span class="p">;</span> <span class="k">done</span>
 
-    <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/venv/bin/pip install -U setuptools pip lief zmq redis python-magic plyara
-    <span class="k">for</span> dependency <span class="k">in</span> CybOXProject/python-cybox STIXProject/python-stix MAECProject/python-maec CybOXProject/mixbox<span class="p">;</span> <span class="k">do</span>
-      false<span class="p">;</span> <span class="k">while</span> <span class="o">[[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">do</span> checkAptLock<span class="p">;</span> <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> git -C <span class="si">${</span><span class="nv">PATH_TO_MISP_SCRIPTS</span><span class="si">}</span>/<span class="si">${</span><span class="nv">dependency</span><span class="p">##*/</span><span class="si">}</span> pull<span class="p">;</span> <span class="k">done</span>
-      <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/venv/bin/pip install -U <span class="si">${</span><span class="nv">PATH_TO_MISP_SCRIPTS</span><span class="si">}</span>/<span class="si">${</span><span class="nv">dependency</span><span class="p">##*/</span><span class="si">}</span>
-    <span class="k">done</span>
-
-    <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/venv/bin/pip install -U <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/cti-python-stix2
     <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/venv/bin/pip install -U <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/PyMISP
     false<span class="p">;</span> <span class="k">while</span> <span class="o">[[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">do</span> checkAptLock<span class="p">;</span> <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span>/venv/bin/pip install -U git+https://github.com/kbandla/pydeep.git<span class="p">;</span> <span class="k">done</span>
 <span class="k">fi</span>
@@ -1659,7 +1645,7 @@ installCake <span class="o">()</span> <span class="o">{</span>
   <span class="c1"># Make composer cache happy</span>
   <span class="c1"># /!\ composer on Ubuntu when invoked with sudo -u doesn&#39;t set $HOME to /var/www but keeps it /home/misp \!/</span>
   sudo mkdir -p /var/www/.composer <span class="p">;</span> sudo chown <span class="si">${</span><span class="nv">WWW_USER</span><span class="si">}</span>:<span class="si">${</span><span class="nv">WWW_USER</span><span class="si">}</span> /var/www/.composer
-  <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> sh -c <span class="s2">&quot;cd </span><span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span><span class="s2">/app ;php composer.phar install&quot;</span>
+  <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> sh -c <span class="s2">&quot;cd </span><span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span><span class="s2">/app ;php composer.phar install --no-dev&quot;</span>
 
   <span class="c1"># Enable CakeResque with php-redis</span>
   sudo phpenmod redis
@@ -2155,6 +2141,9 @@ coreCAKE <span class="o">()</span> <span class="o">{</span>
   <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">RUN_PHP</span><span class="si">}</span> -- <span class="si">${</span><span class="nv">CAKE</span><span class="si">}</span> Admin setSetting <span class="s2">&quot;MISP.block_old_event_alert&quot;</span> <span class="nb">false</span>
   <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">RUN_PHP</span><span class="si">}</span> -- <span class="si">${</span><span class="nv">CAKE</span><span class="si">}</span> Admin setSetting <span class="s2">&quot;MISP.block_old_event_alert_age&quot;</span> <span class="s2">&quot;&quot;</span>
   <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">RUN_PHP</span><span class="si">}</span> -- <span class="si">${</span><span class="nv">CAKE</span><span class="si">}</span> Admin setSetting <span class="s2">&quot;MISP.block_old_event_alert_by_date&quot;</span> <span class="s2">&quot;&quot;</span>
+  <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">RUN_PHP</span><span class="si">}</span> -- <span class="si">${</span><span class="nv">CAKE</span><span class="si">}</span> Admin setSetting <span class="s2">&quot;MISP.event_alert_republish_ban&quot;</span> <span class="nb">false</span>
+  <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">RUN_PHP</span><span class="si">}</span> -- <span class="si">${</span><span class="nv">CAKE</span><span class="si">}</span> Admin setSetting <span class="s2">&quot;MISP.event_alert_republish_ban_threshold&quot;</span> <span class="m">5</span>
+  <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">RUN_PHP</span><span class="si">}</span> -- <span class="si">${</span><span class="nv">CAKE</span><span class="si">}</span> Admin setSetting <span class="s2">&quot;MISP.event_alert_republish_ban_refresh_on_retry&quot;</span> <span class="nb">false</span>
   <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">RUN_PHP</span><span class="si">}</span> -- <span class="si">${</span><span class="nv">CAKE</span><span class="si">}</span> Admin setSetting <span class="s2">&quot;MISP.incoming_tags_disabled_by_default&quot;</span> <span class="nb">false</span>
   <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">RUN_PHP</span><span class="si">}</span> -- <span class="si">${</span><span class="nv">CAKE</span><span class="si">}</span> Admin setSetting <span class="s2">&quot;MISP.maintenance_message&quot;</span> <span class="s2">&quot;Great things are happening! MISP is undergoing maintenance, but will return shortly. You can contact the administration at \$email.&quot;</span>
   <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> <span class="si">${</span><span class="nv">RUN_PHP</span><span class="si">}</span> -- <span class="si">${</span><span class="nv">CAKE</span><span class="si">}</span> Admin setSetting <span class="s2">&quot;MISP.footermidleft&quot;</span> <span class="s2">&quot;This is an initial install&quot;</span>
@@ -3558,7 +3547,7 @@ gitPullAllRCLOCAL <span class="o">()</span> <span class="o">{</span>
 <span class="c1"># Main composer function</span>
 composer <span class="o">()</span> <span class="o">{</span>
   sudo mkdir -p /var/www/.composer <span class="p">;</span> sudo chown <span class="si">${</span><span class="nv">WWW_USER</span><span class="si">}</span>:<span class="si">${</span><span class="nv">WWW_USER</span><span class="si">}</span> /var/www/.composer
-  <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> sh -c <span class="s2">&quot;cd </span><span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span><span class="s2">/app ; php composer.phar install&quot;</span>
+  <span class="si">${</span><span class="nv">SUDO_WWW</span><span class="si">}</span> sh -c <span class="s2">&quot;cd </span><span class="si">${</span><span class="nv">PATH_TO_MISP</span><span class="si">}</span><span class="s2">/app ; php composer.phar install --no-dev&quot;</span>
 <span class="o">}</span>
 
 
