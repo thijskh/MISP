@@ -2518,16 +2518,33 @@
 <h2 id="v24-aka-24-for-ever-current-changelog">v2.4 aka 2.4 for ever (current changelog)<a class="headerlink" href="#v24-aka-24-for-ever-current-changelog" title="Permanent link">&para;</a></h2>
 <h2 id="changes">Changes<a class="headerlink" href="#changes" title="Permanent link">&para;</a></h2>
 <ul>
-<li>[doc] Update to OpenBSD 7.0. [Steve Clement]</li>
-<li>[doc] Added 3 more optionals. [Steve Clement]</li>
+<li>[Server:update] Execute git submodule sync before updating. [Sami
+  Mokaddem]</li>
 </ul>
+<p>This is done in order to make sure the submodules' remote URL is inline with the value defined in the .gitmodules
+- [install] Regenerated install script to include the latest changes +
+  update installer checksums. [chrisr3d]
+- [doc] Update to OpenBSD 7.0. [Steve Clement]
+- [doc] Added 3 more optionals. [Steve Clement]
+- [github actions] Enabling tests on the <code>misp-stix</code> branch (at least
+  temporarily) [chrisr3d]
+- [stix2 export] Using specific filter <code>stix-version</code> instead of
+  <code>version</code> that is too generic and used somewhere else. [chrisr3d]</p>
 <h2 id="fix">Fix<a class="headerlink" href="#fix" title="Permanent link">&para;</a></h2>
 <ul>
 <li>[event index] search by org fixed when using string names, fixes
   MISP/PyMISP#799. [iglocska]</li>
+<li>[github actions] For the tests purpose, installing the stix1 python
+  library from the submodule. [chrisr3d]</li>
+<li>[gitignore] Removed directories related to python libraries.
+  [chrisr3d]</li>
+<li>[stix python install] Added STIX python dependencies to the install.
+  [chrisr3d]</li>
 </ul>
 <h2 id="other">Other<a class="headerlink" href="#other" title="Permanent link">&para;</a></h2>
 <ul>
+<li>Merge branch '2.4' of <a href="https://github.com/MISP/MISP">https://github.com/MISP/MISP</a> into misp-stix.
+  [chrisr3d]</li>
 <li>Merge pull request #7841 from SteveClement/guides. [Steve Clement]</li>
 <li>Merge branch 'MISP:2.4' into guides. [Steve Clement]</li>
 <li>Merge pull request #7840 from amuehlem/2.4. [Alexandre Dulaunoy]</li>
@@ -2536,7 +2553,9 @@
 - Added 'git submodule sync' before 'git submodule update' [Andreas
   Muehlemann]
 - Merge remote-tracking branch 'upstream/2.4' into guides. [Steve
-  Clement]</p>
+  Clement]
+- Merge branch '2.4' of <a href="https://github.com/MISP/MISP">https://github.com/MISP/MISP</a> into misp-stix.
+  [chrisr3d]</p>
 <h2 id="v24150-2021-10-12">v2.4.150 (2021-10-12)<a class="headerlink" href="#v24150-2021-10-12" title="Permanent link">&para;</a></h2>
 <h2 id="new">New<a class="headerlink" href="#new" title="Permanent link">&para;</a></h2>
 <ul>

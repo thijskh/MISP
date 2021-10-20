@@ -1703,6 +1703,9 @@ installCoreRHEL8 <span class="o">()</span> <span class="o">{</span>
   <span class="nv">UMASK</span><span class="o">=</span><span class="k">$(</span><span class="nb">umask</span><span class="k">)</span>
   <span class="nb">umask</span> <span class="m">0022</span>
 
+  <span class="c1"># install python-stix dependencies</span>
+  <span class="nv">$SUDO_WWW</span> <span class="nv">$PATH_TO_MISP</span>/venv/bin/pip install ordered-set python-dateutil six weakrefmethod
+
   <span class="c1"># install zmq, redis</span>
   <span class="nv">$SUDO_WWW</span> <span class="nv">$PATH_TO_MISP</span>/venv/bin/pip install -U zmq redis
 
